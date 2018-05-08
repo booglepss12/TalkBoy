@@ -39,7 +39,10 @@ class ItemTableViewController: UITableViewController {
         if let audioData = sound.audioData{
         audioPlayer = try? AVAudioPlayer(data: audioData)
         audioPlayer?.play()
+            
         }
+        //deselects row after plays audio
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
 
