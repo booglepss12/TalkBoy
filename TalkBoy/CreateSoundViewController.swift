@@ -80,6 +80,16 @@ class CreateSoundViewController: UIViewController {
     
     
     @IBAction func addTapped(_ sender: Any) {
+        if let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
+        {
+            let sound = Sound(entity: Sound.entity(), insertInto: context)
+            sound.name = textField.text
+            if let audioURL = self.audioURL {
+            sound.audioData = try? Data(contentsOf: audioURL)
+            try? context.save()
+            navigationController?.popViewController(animated: true)
+            }
+        }
         
     }
     
